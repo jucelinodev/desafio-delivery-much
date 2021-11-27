@@ -1,6 +1,6 @@
 import { connect, connection } from 'mongoose';
 import { ConnectionOptions } from 'tls';
-import { CustomError } from '../error/CustomError';
+import { CustomError } from '../errors/CustomError';
 
 const databaseUrl: string | undefined = process.env.MONGODB_URI;
 
@@ -19,7 +19,7 @@ const mongooseConnection = connect(
 
 const checkConnection = connection;
 
-checkConnection.on('error', error => console.error(error));
+checkConnection.on('error', error => console.log(error));
 checkConnection.once('open', () => console.log('--- Connected to MongoDB ---'));
 
 export { mongooseConnection };

@@ -1,5 +1,5 @@
 import express from 'express';
-import { GlobalHandleError } from './error/GlobalHandleError';
+import { GlobalHandleError } from './errors/GlobalHandleError';
 
 const app = express();
 const globalHandleError = new GlobalHandleError();
