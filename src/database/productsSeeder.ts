@@ -17,6 +17,7 @@ mongooseConnection.then(() => {
 
   const productsSeeder = async () => {
     const csvFilePath = './products.csv';
+
     const products = await csv().fromFile(csvFilePath);
 
     const productsFormated = products.map((product: IProductCsv) => ({
@@ -24,8 +25,11 @@ mongooseConnection.then(() => {
       price: parseFloat(product.price),
       quantity: parseInt(product.quantity),
     }));
+
     await productsRepository.createMany(productsFormated);
+
     connection.close();
+
     return console.log('--- Seeder successfully executed ---');
   };
   productsSeeder();

@@ -20,6 +20,7 @@ const mongooseConnection = connect(
 const checkConnection = connection;
 
 checkConnection.on('error', error => console.log(error));
+
 checkConnection.once('open', () => console.log('--- Connected to MongoDB ---'));
 
 export { mongooseConnection };
