@@ -25,6 +25,8 @@
     "import/prefer-default-export": "off",
     "no-useless-constructor": "off",
     "no-shadow": "off",
+    "no-plusplus": "off",
+    "no-param-reassign": "off",
     "radix": "off",
     "import/extensions": [
       "error",
