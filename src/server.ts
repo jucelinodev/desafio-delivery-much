@@ -1,11 +1,13 @@
 import 'express-async-errors';
-import dotenv from 'dotenv';
-import { app } from './app';
+import 'dotenv/config';
 
-dotenv.config();
+import { app } from './app';
+import { mongooseConnection } from './database';
 
 const { APP_HOST, APP_PORT } = process.env;
 
-app.listen(APP_PORT, () =>
-  console.log(`Server running in http://${APP_HOST}:${APP_PORT}`),
-);
+mongooseConnection.then(() => {
+  app.listen(APP_PORT, () =>
+    console.log(`--- Server running in http://${APP_HOST}:${APP_PORT} ---`),
+  );
+});
