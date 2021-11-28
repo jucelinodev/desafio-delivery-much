@@ -22,6 +22,14 @@ export class ProductsRepository {
     return product.save();
   }
 
+  async subtractQuantity(
+    product: ProductsDocument,
+    quantity: number,
+  ): Promise<ProductsDocument | null> {
+    product.quantity -= quantity;
+    return product.save();
+  }
+
   async createMany(products: IProduct[]): Promise<ProductsDocument[]> {
     return this.productModel.insertMany(products);
   }
