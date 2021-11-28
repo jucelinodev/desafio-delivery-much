@@ -5,6 +5,10 @@ import { OrdersRepository } from '../repositories/OrdersRepository';
 import { FindOrderByIdService } from './FindOrderByIdService';
 
 describe('FindOrderById', () => {
+  beforeEach(() => {
+    mockingoose.resetAll();
+  });
+
   it('should be return a order by id', async () => {
     const fakeOrder = {
       _id: '61a2c0dac48e6ec075f85413',

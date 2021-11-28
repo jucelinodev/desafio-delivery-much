@@ -6,6 +6,9 @@ import { OrdersRepository } from '../repositories/OrdersRepository';
 import { FindAllOrderService } from './FindAllOrdersService';
 
 describe('FindAllOrdersService', () => {
+  beforeEach(() => {
+    mockingoose.resetAll();
+  });
   it('should list all orders', async () => {
     const fakeOrderList = [
       {

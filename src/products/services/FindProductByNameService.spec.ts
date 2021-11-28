@@ -5,6 +5,10 @@ import { ProductsRepository } from '../repositories/ProductsRepository';
 import { FindProductByNameService } from './FindProductByNameService';
 
 describe('FindProductByName', () => {
+  beforeEach(() => {
+    mockingoose.resetAll();
+  });
+
   it('should be return a product by name', async () => {
     const fakeProduct = {
       name: 'Lentils',

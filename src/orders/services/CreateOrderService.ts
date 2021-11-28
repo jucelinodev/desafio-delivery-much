@@ -1,8 +1,12 @@
 import { CustomError } from '../../errors/CustomError';
-import { IProduct } from '../../products/interfaces/IProduct';
 import { ProductsRepository } from '../../products/repositories/ProductsRepository';
 import { OrderDocument } from '../models/Orders';
 import { OrdersRepository } from '../repositories/OrdersRepository';
+
+export interface ProductsRequest {
+  name: string;
+  quantity: number;
+}
 
 export class CreateOrderService {
   constructor(
@@ -10,7 +14,7 @@ export class CreateOrderService {
     private productsRepository: ProductsRepository,
   ) {}
 
-  async execute(products: IProduct[]): Promise<OrderDocument> {
+  async execute(products: ProductsRequest[]): Promise<OrderDocument> {
     const itens = await Promise.all(
       products.map(async orderedProduct => {
         const product = await this.productsRepository.findByName(
@@ -24,6 +28,7 @@ export class CreateOrderService {
         if (product.quantity < orderedProduct.quantity) {
           throw new CustomError(
             `Product ${product.name} not available in stock`,
+            422,
           );
         }
 
