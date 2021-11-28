@@ -12,10 +12,9 @@ export class UpdateStockService {
     action: ActionStockEnum,
   ): Promise<IProduct> {
     if (!message) {
-      throw new CustomError('Unidentified message');
+      throw new CustomError('Unidentified message', 422);
     }
-
-    const name = message.content.toString('utf-8').replace(/^"|"$/g, '');
+    const name = message.content?.toString('utf-8').replace(/^"|"$/g, '');
     const product = await this.productRepository.findByName(name);
 
     if (!product) {
@@ -26,22 +25,19 @@ export class UpdateStockService {
       // eslint-disable-next-line no-underscore-dangle
       throw new CustomError(
         `It was not possible to decrement the product ${product.name} because its stock is 0`,
+        422,
       );
     }
 
     const makeMethodRepository = (action: ActionStockEnum) => {
       if (action === ActionStockEnum.INCREMENTED) return 'incrementQuantity';
       if (action === ActionStockEnum.DECREMENTED) return 'decrementQuantity';
-      throw new CustomError('Unidentified action');
+      throw new CustomError('Unidentified action', 422);
     };
 
     const updatedProduct = await this.productRepository[
       makeMethodRepository(action)
     ](product);
-
-    if (!updatedProduct) {
-      throw new CustomError('Unable to update product quantity');
-    }
 
     return updatedProduct;
   }

@@ -17,7 +17,7 @@ export class ProductsRepository {
 
   async decrementQuantity(
     product: ProductsDocument,
-  ): Promise<ProductsDocument | null> {
+  ): Promise<ProductsDocument> {
     product.quantity--;
     return product.save();
   }
@@ -25,7 +25,7 @@ export class ProductsRepository {
   async subtractQuantity(
     product: ProductsDocument,
     quantity: number,
-  ): Promise<ProductsDocument | null> {
+  ): Promise<ProductsDocument> {
     product.quantity -= quantity;
     return product.save();
   }
