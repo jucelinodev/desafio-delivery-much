@@ -11,5 +11,5 @@ mongooseConnection.then(() => {
   app.listen(APP_PORT, () =>
     console.log(`--- Server running in http://${APP_HOST}:${APP_PORT} ---`),
   );
-  // stockConsume();
+  stockConsume();
 });

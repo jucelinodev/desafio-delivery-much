@@ -29,6 +29,7 @@
     "no-param-reassign": "off",
     "radix": "off",
     "no-multi-assign": "off",
+    "no-underscore-dangle": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
