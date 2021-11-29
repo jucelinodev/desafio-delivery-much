@@ -82,4 +82,4 @@ $ npm start
 
 - Certifique-se que todas as portas padrão estão desocupadas para cada serviço: 3333 (Node), 27017 (MongoDB), 5672 (RabbitMQ)
 
-- Os nomes dos produtos são unicos, certifique-se que já não tenha eles populados no seu banco, caso tenha, retornará ira retornar um erro no seeder.
+- Os nomes dos produtos são unicos, certifique-se que já não tenha eles populados no seu banco, caso tenha, irá retornar um erro no seeder.
